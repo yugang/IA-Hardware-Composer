@@ -1,6 +1,8 @@
 language: c++
 sudo: required
+dist: trusty
 install:
+- sudo apt-get install automake
 - sudo apt-get install autoconf
 - sudo apt-get install libtool
 - sudo apt-get install bison
@@ -9,6 +11,21 @@ install:
 - sudo apt-get install libpciaccess-dev
 - sudo apt-get install libomxil-bellagio-dev
 - sudo apt-get install llvm
+script:
+- export HWCSRC=$TRAVIS_BUILD_DIR/../hwc-src
+- export WLD=$TRAVIS_BUILD_DIR/../hwc-install
+- export LD_LIBRARY_PATH=$WLD/lib
+- export PKG_CONFIG_PATH=$WLD/lib/pkgconfig/:$WLD/share/pkgconfig
+- export PATH=$WLD/bin:$PATH
+- export ACLOCAL_PATH=$WLD/share/aclocal
+- export ACLOCAL="aclocal -I $ACLOCAL_PATH"
+- mkdir -p $HWCSRC
+- mkdir -p $WLD/share/aclocal
+- export DRV_I915=1
+- git clone https://github.com/android-ia/device-androidia-kernel.git $HWCSRC/linux
+- git clone https://github.com/android-ia/external-libdrm.git $HWCSRC/libdrm
+- git clone https://github.com/android-ia/external-mesa.git $HWCSRC/mesa
+- git clone https://github.com/android-ia/minigbm.git $HWCSRC/minigbm
 branches:
   only:
   - travisci
