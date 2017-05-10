@@ -1,14 +1,13 @@
 language: c++
 sudo: required
 install:
-- sudo apt-get install libxutils-dev
-- sudo apt-get install Autoconf
-- sudo apt-get install Libtool
-- sudo apt-get install Bison
-- sudo apt-get install Flex
-- sudo apt-get install Python-mako
-- sudo apt-get install Libpciaccess
-- sudo apt-get install Libomxil-bellagio-dev
+- sudo apt-get install autoconf
+- sudo apt-get install libtool
+- sudo apt-get install bison
+- sudo apt-get install flex
+- sudo apt-get install python-mako
+- sudo apt-get install libpciaccess-dev
+- sudo apt-get install libomxil-bellagio-dev
 - sudo apt-get install llvm
 branches:
   only:
