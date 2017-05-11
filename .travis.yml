@@ -21,8 +21,8 @@ install:
 - ls /usr/lib/python2.7/dist-packages/mako
 - sudo apt-get install tree
 script:
-- export HWC_BUILD_DIR=$TRAVIS_BUILD_DIR/../
-- export WLD=$TRAVIS_BUILD_DIR/../hwc-install
+- export HWC_BUILD_DIR=/tmp/
+- export WLD=/tmp/hwc-install
 - export LD_LIBRARY_PATH=$WLD/lib
 - export PKG_CONFIG_PATH=$WLD/lib/pkgconfig/:$WLD/share/pkgconfig
 - export PATH=$WLD/bin:$PATH
@@ -56,7 +56,6 @@ script:
 #- git clone https://github.com/KhronosGroup/Vulkan-LoaderAndValidationLayers.git $HWC_BUILD_DIR/vulkan
 - ./autogen.sh --prefix=$WLD
 - make -j5
-- tree $WLD
 branches:
   only:
   - travisci
