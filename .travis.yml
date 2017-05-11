@@ -11,6 +11,13 @@ install:
 - sudo apt-get install libpciaccess-dev
 - sudo apt-get install llvm
 - sudo apt-get install libexpat-dev
+- sudo apt-get install python-software-properties
+- sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+- sudo apt-get update
+- sudo apt-get install gcc-4.9
+- sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 50
+- sudo apt-get install g++-4.9
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
 - ls /usr/lib/python2.7/dist-packages/mako
 - sudo apt-get install tree
 script:
@@ -21,9 +28,9 @@ script:
 - export PATH=$WLD/bin:$PATH
 - export ACLOCAL_PATH=$WLD/share/aclocal
 - export ACLOCAL="aclocal -I $ACLOCAL_PATH"
-- mkdir -p $HWC_BUILD_DIR
-- mkdir -p $WLD/share/aclocal
 - export DRV_I915=1
+- tar -xvf travisci/resources/hwc-install.tar.bz2 -C $HWC_BUILD_DIR
+#- mkdir -p $WLD/share/aclocal
 #- git clone https://github.com/android-ia/device-androidia-kernel.git $HWC_BUILD_DIR/linux
 #- cp travisci/resources/linux.cfg $HWC_BUILD_DIR/linux/.config
 #- pushd $HWC_BUILD_DIR/linux/
@@ -31,22 +38,21 @@ script:
 #- make -j50
 #- make headers_install INSTALL_HDR_PATH=$WLD
 #- popd
-- tar -xvf travisci/resources/include.tar.bz2 -C $WLD
-- git clone https://github.com/android-ia/external-libdrm.git $HWC_BUILD_DIR/libdrm
-- pushd $HWC_BUILD_DIR/libdrm
-- ./autogen.sh --disable-radeon --disable-nouveau --enable-udev -enable-libkms --prefix=$WLD
-- make -j10 && make install
-- popd
-- git clone https://github.com/android-ia/external-mesa.git $HWC_BUILD_DIR/mesa
-- pushd $HWC_BUILD_DIR/mesa
-- ./autogen.sh --prefix=$WLD --enable-gles2 --disable-gallium-egl --with-egl-platforms=surfaceless --disable-dri3 --enable-shared-glapi --enable-texture-float --with-driver=dri --disable-glu --disable-glut --without-demos --disable-option-checking --disable-glx --enable-glx-tls --disable-nouveau --disable-gbm --with-dri-drivers=i965 --with-gallium-drivers=
-- make -j10 && make install
-- popd
-- git clone https://github.com/01org/minigbm.git $HWC_BUILD_DIR/minigbm
-- pushd $HWC_BUILD_DIR/minigbm
-- make CFLAGS=-DDRV_I915=1
-- make install DESTDIR=$WLD LIBDIR=lib/
-- popd
+#- git clone https://github.com/android-ia/external-libdrm.git $HWC_BUILD_DIR/libdrm
+#- pushd $HWC_BUILD_DIR/libdrm
+#- ./autogen.sh --disable-radeon --disable-nouveau --enable-udev -enable-libkms --prefix=$WLD
+#- make -j10 && make install
+#- popd
+#- git clone https://github.com/android-ia/external-mesa.git $HWC_BUILD_DIR/mesa
+#- pushd $HWC_BUILD_DIR/mesa
+#- ./autogen.sh --prefix=$WLD --enable-gles2 --disable-gallium-egl --with-egl-platforms=surfaceless --disable-dri3 --enable-shared-glapi --enable-texture-float --with-driver=dri --disable-glu --disable-glut --without-demos --disable-option-checking --disable-glx --enable-glx-tls --disable-nouveau --disable-gbm --with-dri-drivers=i965 --with-gallium-drivers=
+#- make -j10 && make install
+#- popd
+#- git clone https://github.com/01org/minigbm.git $HWC_BUILD_DIR/minigbm
+#- pushd $HWC_BUILD_DIR/minigbm
+#- make CFLAGS=-DDRV_I915=1
+#- make install DESTDIR=$WLD LIBDIR=lib/
+#- popd
 #- git clone https://github.com/KhronosGroup/Vulkan-LoaderAndValidationLayers.git $HWC_BUILD_DIR/vulkan
 - ./autogen.sh --prefix=$WLD
 - make -j5
