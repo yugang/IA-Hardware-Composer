@@ -24,31 +24,32 @@ script:
 - mkdir -p $HWC_BUILD_DIR
 - mkdir -p $WLD/share/aclocal
 - export DRV_I915=1
-- git clone https://github.com/android-ia/device-androidia-kernel.git $HWC_BUILD_DIR/linux
+#- git clone https://github.com/android-ia/device-androidia-kernel.git $HWC_BUILD_DIR/linux
+#- cp travisci/resources/linux.cfg $HWC_BUILD_DIR/linux/.config
+#- pushd $HWC_BUILD_DIR/linux/
+#- no "" | make oldconfig
+#- make -j50
+#- make headers_install INSTALL_HDR_PATH=$WLD
+#- popd
+- tar -xvf travisci/resources/include.tar.bz2 -C $WLD
 - git clone https://github.com/android-ia/external-libdrm.git $HWC_BUILD_DIR/libdrm
-- git clone https://github.com/android-ia/external-mesa.git $HWC_BUILD_DIR/mesa
-- git clone https://github.com/01org/minigbm.git $HWC_BUILD_DIR/minigbm
-- git clone https://github.com/KhronosGroup/Vulkan-LoaderAndValidationLayers.git $HWC_BUILD_DIR/vulkan
-- cp travisci/resources/linux.cfg $HWC_BUILD_DIR/linux/.config
-- pushd $HWC_BUILD_DIR/linux/
-- no "" | make oldconfig
-- make -j5
-- make headers_install INSTALL_HDR_PATH=$WLD
-- popd
 - pushd $HWC_BUILD_DIR/libdrm
 - ./autogen.sh --disable-radeon --disable-nouveau --enable-udev -enable-libkms --prefix=$WLD
-- make -j5 && make install
+- make -j10 && make install
 - popd
+- git clone https://github.com/android-ia/external-mesa.git $HWC_BUILD_DIR/mesa
 - pushd $HWC_BUILD_DIR/mesa
 - ./autogen.sh --prefix=$WLD --enable-gles2 --disable-gallium-egl --with-egl-platforms=surfaceless --disable-dri3 --enable-shared-glapi --enable-texture-float --with-driver=dri --disable-glu --disable-glut --without-demos --disable-option-checking --disable-glx --enable-glx-tls --disable-nouveau --disable-gbm --with-dri-drivers=i965 --with-gallium-drivers=
-- make -j4 && make install
+- make -j10 && make install
 - popd
+- git clone https://github.com/01org/minigbm.git $HWC_BUILD_DIR/minigbm
 - pushd $HWC_BUILD_DIR/minigbm
 - make CFLAGS=-DDRV_I915=1
 - make install DESTDIR=$WLD LIBDIR=lib/
 - popd
+#- git clone https://github.com/KhronosGroup/Vulkan-LoaderAndValidationLayers.git $HWC_BUILD_DIR/vulkan
 - ./autogen.sh --prefix=$WLD
-- make -j8
+- make -j5
 - tree $WLD
 branches:
   only:
