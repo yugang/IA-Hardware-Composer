@@ -6,15 +6,11 @@ install:
 - sudo apt-get install automake
 - sudo apt-get install autoconf
 - sudo apt-get install libtool
-- sudo apt-get install bison
-- sudo apt-get install flex
+- sudo apt-get install python-mako
 - sudo apt-get install xutils-dev
 - sudo apt-get install libpciaccess-dev
-- sudo apt-get install libomxil-bellagio-dev
 - sudo apt-get install llvm
-- sudo apt-get install python-pip
-- sudo apt-get install python3-mako
-- sudo apt-get install python-mako
+- sudo apt-get install libexpat-dev
 - ls /usr/lib/python2.7/dist-packages/mako
 - sudo apt-get install tree
 script:
