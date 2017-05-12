@@ -1,7 +1,8 @@
-#Travis CI Docker
+## Debug Travis CI with Docker
 
-=Ubuntu 16.04 LTS) with "su root"=
-Refer to https://docs.travis-ci.com/user/common-build-problems/#Running-a-Container-Based-Docker-Image-Locally
+Host PC: Ubuntu 16.04 LTS with "su root"
+
+Reference: https://docs.travis-ci.com/user/common-build-problems/#Running-a-Container-Based-Docker-Image-Locally
 
 * Install Docker: apt-get install docker
 * Download Travis CI Docker image(refer to https://hub.docker.com/u/travisci/): docker pull travisci/ci-garnet:packer-1490989530
