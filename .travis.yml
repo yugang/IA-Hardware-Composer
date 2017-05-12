@@ -10,7 +10,6 @@ install:
 - sudo apt-get install xutils-dev
 - sudo apt-get install libpciaccess-dev
 - sudo apt-get install llvm
-- sudo apt-get install libexpat-dev
 - sudo apt-get install python-software-properties
 - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 - sudo apt-get update
