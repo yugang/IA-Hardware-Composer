@@ -39,11 +39,11 @@ script:
 #- ./autogen.sh --disable-radeon --disable-nouveau --enable-udev -enable-libkms --prefix=$WLD
 #- make -j10 && make install
 #- popd
-- git clone https://github.com/android-ia/external-mesa.git $HWC_BUILD_DIR/mesa
-- pushd $HWC_BUILD_DIR/mesa
-- ./autogen.sh --prefix=$WLD --enable-gles2 --disable-gallium-egl --with-egl-platforms=surfaceless --disable-dri3 --enable-shared-glapi --enable-texture-float --with-driver=dri --disable-glu --disable-glut --without-demos --disable-option-checking --disable-glx --enable-glx-tls --disable-nouveau --disable-gbm --with-dri-drivers=i965 --with-gallium-drivers=
-- make -j10 && make install
-- popd
+#- git clone https://github.com/android-ia/external-mesa.git $HWC_BUILD_DIR/mesa
+#- pushd $HWC_BUILD_DIR/mesa
+#- ./autogen.sh --prefix=$WLD --enable-gles2 --disable-gallium-egl --with-egl-platforms=surfaceless --disable-dri3 --enable-shared-glapi --enable-texture-float --with-driver=dri --disable-glu --disable-glut --without-demos --disable-option-checking --disable-glx --enable-glx-tls --disable-nouveau --disable-gbm --with-dri-drivers=i965 --with-gallium-drivers=
+#- make -j10 && make install
+#- popd
 #- git clone https://github.com/01org/minigbm.git $HWC_BUILD_DIR/minigbm
 #- pushd $HWC_BUILD_DIR/minigbm
 #- make CFLAGS=-DDRV_I915=1
