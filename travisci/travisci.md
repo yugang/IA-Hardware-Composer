@@ -1,9 +1,10 @@
 #Travis CI Docker
 
 =Ubuntu 16.04 LTS) with "su root"=
+Refer to https://docs.travis-ci.com/user/common-build-problems/#Running-a-Container-Based-Docker-Image-Locally
 
 * Install Docker: apt-get install docker
-* Download Travis CI Docker image: docker pull travisci/ci-garnet:packer-1490989530
+* Download Travis CI Docker image(refer to https://hub.docker.com/u/travisci/): docker pull travisci/ci-garnet:packer-1490989530
 * Start Docket service: service docker start
 * List existing images: docker images
 * Don't use this vritual net interface as we only need use --net=host: ifconfig docker0 down
